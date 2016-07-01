@@ -2,6 +2,7 @@ package exercise.exercise1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Radu.Hoaghe on 4/20/2015.
@@ -25,6 +26,8 @@ public class Exercise1{
     }
 
     // TODO Exercise #1 a) Compute sum and get the min and the max from givenList, iterating through it using ListIterator
+
+
     public List<Integer> iterateUsingListIterator(){
 
         // This List is used only for testing so you don't have to modify it
@@ -33,13 +36,33 @@ public class Exercise1{
 
         // TODO Exercise #1 a1) In order to pass the tests, you need to name your variables sum, min and max or if
         // TODO Exercise #1 a1) you want to name them differently you need to modify them when you add them to testValues
+        int sum = 0;
+        ListIterator<Integer> li = givenList.listIterator();
+        while (li.hasNext())
+            sum += li.next();
 
+        int min = givenList.get(0);
+        li = givenList.listIterator();
+        while (li.hasNext())
+        {
+            int elem = li.next();
+            if (elem < min)
+                min = elem;
+        }
 
+        int max = givenList.get(0);
+        li = givenList.listIterator();
+        while (li.hasNext())
+        {
+            int elem = li.next();
+            if (elem > max)
+                max = elem;
+        }
 
         // TODO Exercise #1 a2) Uncomment the following three lines in order to check your computed values using tests
-//        testValues.add(sum);
-//        testValues.add(min);
-//        testValues.add(max);
+        testValues.add(sum);
+        testValues.add(min);
+        testValues.add(max);
 
         return testValues;
     }
@@ -54,13 +77,25 @@ public class Exercise1{
 
         // TODO Exercise #1 b1) In order to pass the tests, you need to name your variables sum, min and max or if
         // TODO Exercise #1 b1) you want to name them differently you need to modify them when you add them to testValues
+        int sum = 0;
+        for (int i = 0; i < givenList.size(); i+=2)
+            sum += givenList.get(i);
+
+        int min = givenList.get(0);
+        for (int i = 0; i < givenList.size(); i+=2)
+            if (min > givenList.get(i))
+                min = givenList.get(i);
+
+        int max = givenList.get(0);
+        for (int i = 0; i < givenList.size(); i+=2)
+            if (max < givenList.get(i))
+                max = givenList.get(i);
 
 
-
-        // TODO Exercise #1 b2) Uncomment the following three lines in order to check your computed values using tests
-//        testValues.add(sum);
-//        testValues.add(min);
-//        testValues.add(max);
+            // TODO Exercise #1 b2) Uncomment the following three lines in order to check your computed values using tests
+        testValues.add(sum);
+        testValues.add(min);
+        testValues.add(max);
 
         return testValues;
     }
@@ -75,13 +110,25 @@ public class Exercise1{
 
         // TODO Exercise #1 c1) In order to pass the tests, you need to name your variables sum, min and max or if
         // TODO Exercise #1 c1) you want to name them differently you need to modify them when you add them to testValues
+        int sum = 0;
+        for (int elem : givenList)
+                if (elem%2 != 0)
+                    sum += elem;
+        int min = 100;
+        for (int elem : givenList)
+            if (elem%2 != 0 && elem<min)
+                min = elem;
 
+        int max = 0;
+        for (int elem : givenList)
+                if (elem%2 != 0 && elem>max)
+                    max = elem;
 
 
         // TODO Exercise #1 c2) Uncomment the following three lines in order to check your computed values using tests
-//        testValues.add(sum);
-//        testValues.add(min);
-//        testValues.add(max);
+        testValues.add(sum);
+        testValues.add(min);
+        testValues.add(max);
 
         return testValues;
     }
