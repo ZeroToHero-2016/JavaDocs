@@ -1,5 +1,6 @@
 package exercise.exercise2;
 
+import java.util.*;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  *
  *             Secondly, you will also need to override the remove methods (Hint: of course, the List
  *             documentation) because the number of different elements in the list could change if
- *             the last element of its kind in the list is removed and by not overrriding it the
+ *             the last element of its kind in the list is removed and by not overriding it the
  *             counter will remain unchanged.
  *
  *             Finally, you will need to override the clear method and create a getter method for the
@@ -46,16 +47,70 @@ public class MyList<Integer> extends ArrayList<Integer> {
 
     // TODO Exercise #2 a) Override add() and addAll() methods so that the list should retain the number of
     // TODO Exercise #2 a) different elements (Hint: check out the methods signatures on the List documentation)
+    public boolean add(Integer element) {
+        if(!this.contains(element)){
+            differentElements++;
+        }
+        return super.add(element);
+    }
+
+    public void add(int index, Integer element) {
+        if(!this.contains(element)){
+            differentElements++;
+        }
+        super.add(index, element);
+    }
+
+    public boolean addAll(Collection<? extends Integer> c) {
+        for(Integer current : c) {
+            if(!this.contains(current)){
+                differentElements++;
+            }
+        }
+        return super.addAll(c);
+    }
+
+    public boolean addAll(int index, Collection<? extends Integer> c) {
+        for(Integer current : c) {
+            if(!this.contains(current)){
+                differentElements++;
+            }
+        }
+        return super.addAll(index, c);
+    }
 
     // TODO Exercise #2 b) Override the remove methods so that the number of different elements is updated when
     // TODO Exercise #2 b) an element is removed
     // TODO Exercise #2 b) hint: you need to update the number of different elements only when
     // TODO Exercise #2 b) the element that needs to be removed is the last element of its kind in the list
+    public Integer remove (int index){
+        Integer temp;
+        temp = super.remove(index);
+        if(!this.contains(temp)){
+            differentElements--;
+        }
+        return temp;
+    }
+
+    public boolean remove (Object element){
+        Integer temp;
+        int index = this.indexOf(element);
+        temp = this.get(index);
+        super.remove(element);
+        if(!this.contains(temp)){
+            differentElements--;
+        }
+        return super.remove(element);
+    }
+
 
     // TODO Exercise #2 c) Override the clear method and reset the number of different elements
+    public void clear() {
+        differentElements = 0;
+    }
 
     // TODO Exercise #2 d) Return the number of different elements that exist into the list
     public int getDifferentElements() {
-        return 0;
+        return differentElements;
     }
 }

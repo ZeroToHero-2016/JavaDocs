@@ -1,6 +1,7 @@
 package exercise.exercise3;
 
 import java.util.List;
+import java.util.*;
 
 /**
  * Created by Radu.Hoaghe on 04/20/2015.
@@ -31,20 +32,56 @@ public class Exercise3 {
 
         System.out.println("The elements that will be added to the Sets: ");
         // TODO Exercise #3 a) Check the content of the elements you will add into the Set
+        for(String temp : listToAdd) {
+            System.out.print(temp+" ");
+        }
+        System.out.println();
 
         // TODO Exercise #3 b) add the elements from listToAdd to the Sets
+        Set<String> set1 = new TreeSet<>();
+        for(String temp : listToAdd) {
+            set1.add(temp);
+        }
+
+        Set<String> set2 = new HashSet<>();
+        for(String temp : listToAdd) {
+            set2.add(temp);
+        }
+
+        Set<String> set3 = new LinkedHashSet<>();
+        for(String temp : listToAdd) {
+            set3.add(temp);
+        }
 
         // TODO Exercise #3 c) Check the content of the Sets
         System.out.println("\nThe elements contained in the first Set: ");
+        for(String temp : set1) {
+            System.out.print(temp+" ");
+        }
+        System.out.println();
 
         System.out.println("\nThe elements contained in the second Set: ");
+        for(String temp : set2) {
+            System.out.print(temp+" ");
+        }
+        System.out.println();
 
         System.out.println("\nThe elements contained in the third Set: ");
-
+        for(String temp : set3) {
+            System.out.print(temp+" ");
+        }
+        System.out.println();
 
         System.out.println("\nThe elements contained in the TreeSet after inserting two duplicates: ");
 
         // TODO Exercise #3 d) Add to the TreeSet two elements that already exist in the Set
+            set1.add("that");
+            set1.add("collection");
+
         // TODO Exercise #3 d) and print again the TreeSet. What do you see?
+        for(String temp : set1) {
+            System.out.print(temp+" ");
+        }
+        System.out.println();
     }
 }
