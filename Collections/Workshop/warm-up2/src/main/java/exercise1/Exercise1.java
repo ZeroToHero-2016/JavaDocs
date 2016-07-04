@@ -22,11 +22,8 @@ public class Exercise1 {
     // the capital city of the country
     private Map<String, String> countries;
 
-    public Exercise1(Map<String, String> countries)
-    {
-
-        this.countries = countries;
-    }
+    public Exercise1(Map<String, String> countries) { this.countries = countries; }
+    //comentariu 
 
     public List<String> iteratingOverKeys(){
 
