@@ -1,12 +1,14 @@
 package exercise3;
 
+
+
 import java.util.*;
 
 /**
  * Exercise 3. Implement a HashMap from scratch. In order to pass all the tests
  * you need to implement all the methods defined below. The key-value pair will
  * be encapsulated in the MyHashMap.MyEntry object defined below.
- *
+ * <p>
  * The buckets list in which each MyEntry object will be stored is stored in "buckets" object.
  */
 public class MyHashMap {
@@ -20,7 +22,7 @@ public class MyHashMap {
 
         // Initialize buckets list
         buckets = new ArrayList<LinkedList<MyEntry>>();
-        for(Integer i = 0; i < capacity; i++) {
+        for (Integer i = 0; i < capacity; i++) {
             buckets.add(new LinkedList<MyEntry>());
         }
     }
@@ -65,6 +67,7 @@ public class MyHashMap {
         Set<String> key = new HashSet<String>();
         for (int i = 0; i < buckets.size(); i++) {
             LinkedList<MyEntry> myLinkList = buckets.get(i);
+
             for (Iterator it = myLinkList.iterator(); it.hasNext(); ) {
                 MyEntry entry = (MyEntry) it.next();
                 key.add(entry.getKey());
@@ -83,6 +86,7 @@ public class MyHashMap {
         }
         return values;
     }
+
 
     public String remove(String key) {
         // TODO Returns the value associated with the key removed from the map or null if the key wasn't found
