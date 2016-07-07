@@ -26,6 +26,6 @@ public class QueryBuilder {
 
     public QueryBuilder addCondition(Condition condition){
         QueryBuilder query = new QueryBuilder();
-        
+
     }
 }
