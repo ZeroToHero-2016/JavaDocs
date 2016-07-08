@@ -37,7 +37,7 @@
       <file leaf-file-name="QueryBuilder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ro/teamnet/zth/api/em/QueryBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2160">
+            <state relative-caret-position="491">
               <caret line="144" column="53" selection-start-line="144" selection-start-column="53" selection-end-line="144" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -988,7 +988,7 @@
       <workItem from="1467876277667" duration="12857000" />
       <workItem from="1467921446902" duration="2262000" />
       <workItem from="1467923966276" duration="19000" />
-      <workItem from="1467924121179" duration="1390000" />
+      <workItem from="1467924121179" duration="1560000" />
     </task>
     <servers />
   </component>
@@ -1025,7 +1025,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16528000" />
+    <option name="totallyTimeSpent" value="16698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1483,7 +1483,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/teamnet/zth/api/em/QueryBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
+        <state relative-caret-position="491">
           <caret line="144" column="53" selection-start-line="144" selection-start-column="53" selection-end-line="144" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
