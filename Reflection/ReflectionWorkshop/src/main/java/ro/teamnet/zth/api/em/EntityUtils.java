@@ -46,7 +46,7 @@ public class EntityUtils {
         return columnInfo;
     }
 
-    public static Object castFromSqlType(Object value, Class wantedType){
+/*    public static Object castFromSqlType(Object value, Class wantedType){
         if(value.getClass().equals(BigDecimal.class) && wantedType.equals(Integer.class)){
             return ((BigDecimal) value).intValue();
         }
@@ -63,6 +63,21 @@ public class EntityUtils {
             return value;
         }
         return value;
+    }*/
+
+    public static Object castFromSqlType(Object value, Class wantedType) {
+        if(value != null) {
+            if(value instanceof BigDecimal) {
+                BigDecimal bdValue = (BigDecimal) value;
+                return wantedType.equals(Integer.class) ? bdValue.intValue() :
+                        wantedType.equals(Long.class) ? bdValue.longValue() :
+                                wantedType.equals(Float.class) ? bdValue.floatValue() :
+                                        wantedType.equals(Double.class) ? bdValue.doubleValue() : value;
+            } else {
+                return value;
+            }
+        }
+        return null;
     }
 
     public static List<Field> getFieldsByAnnotations(Class clazz, Class annotation){

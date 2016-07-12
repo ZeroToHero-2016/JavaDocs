@@ -2,10 +2,12 @@ package ro.teamnet.zth.appl.domain;
 
 import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.annotations.Id;
+import ro.teamnet.zth.api.annotations.Table;
 
 /**
  * Created by Medeea on 07/07/16.
  */
+@Table(name = "locations")
 public class Location {
 
     @Id(name = "location_id")

@@ -9,13 +9,13 @@ import ro.teamnet.zth.api.annotations.Table;
 public class Department {
 
     @Id(name = "department_id")
-    private long id;
+    private Long id;
 
     @Column(name = "department_name")
     private String departmentName;
 
     @Column(name = "location_id")
-    private Location location;
+    private Long location;
 
     @Override
     public boolean equals(Object o) {
@@ -39,11 +39,11 @@ public class Department {
                 '}';
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,11 +55,11 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Location getLocation() {
+    public Long getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Long location) {
         this.location = location;
     }
 }

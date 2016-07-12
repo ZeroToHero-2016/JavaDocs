@@ -50,7 +50,7 @@ public class EntityUtilsTest {
     @Test
     public void testgetSqlValueMethod() {
         Department d = new Department();
-        d.setId(12);
+        d.setId(12L);
         Object tableName = EntityUtils.getSqlValue(d);
         assertEquals("Id isn't correct.", (long)12, tableName);
     }

@@ -18,7 +18,7 @@ public class QueryBuilder {
         if (value == null)
             return null;
         if (value.getClass().equals(String.class)){
-            return (String)value;
+            return "'"+value+"'";
         }
         if (value.getClass().equals(Date.class)){
             DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
@@ -121,9 +121,9 @@ public class QueryBuilder {
         StringBuilder sqlValues = new StringBuilder(" values (");
         boolean first = true;
         for (ColumnInfo columnInfo : queryColumns) {
-            if (columnInfo.isId()) {
+            /*if (columnInfo.isId()) {
                 continue;
-            }
+            }*/
             if (!first) {
                 sql.append(",");
                 sqlValues.append(",");
