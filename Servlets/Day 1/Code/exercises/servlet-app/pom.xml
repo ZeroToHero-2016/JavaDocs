@@ -48,7 +48,7 @@
                 <version>2.2</version>
                 <configuration>
                     <server>local_tomcat</server>
-                    <url>http://localhost:8082/manager/text</url>
+                    <url>http://docker.local:49100/manager/text</url>
                 </configuration>
             </plugin>
         </plugins>
