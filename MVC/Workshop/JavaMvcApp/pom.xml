@@ -63,10 +63,11 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://docker.local:49100/manager/text</url>
+                    <url>http://192.168.99.100:49100/manager/text</url>
                     <username>admin</username>
                     <password>admin</password>
                     <path>/app</path>
+                    <port>8060</port>
                 </configuration>
             </plugin>
         </plugins>
