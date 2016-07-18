@@ -1,7 +1,11 @@
 package ro.teamnet.zth;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import ro.teamnet.zth.api.annotations.MyController;
 import ro.teamnet.zth.api.annotations.MyRequestMethod;
+import ro.teamnet.zth.api.annotations.MyRequestParam;
 import ro.teamnet.zth.appl.controller.DepartmentController;
 import ro.teamnet.zth.appl.controller.EmployeeController;
 import ro.teamnet.zth.fmk.AnnotationScanUtils;
@@ -15,8 +19,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.lang.reflect.Parameter;
+import java.util.*;
 
 public class DispatcherServlet extends HttpServlet {
     //rol de registru
@@ -42,6 +46,7 @@ public class DispatcherServlet extends HttpServlet {
                             methodAttributes.setControllerClass(controller.getName());
                             methodAttributes.setMethodType(requestMethod.methodType());
                             methodAttributes.setMethodName(controllerMethod.getName());
+                            methodAttributes.setParameterTypes(controllerMethod.getParameterTypes());
                             allowedMethods.put(urlPath,methodAttributes);
                         }
                     }
@@ -90,7 +95,11 @@ public class DispatcherServlet extends HttpServlet {
 
     private void reply(Object r, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
-        out.printf(r.toString());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String value = objectMapper.writeValueAsString(r);
+        out.printf(value);
+
     }
 
 
@@ -110,6 +119,12 @@ public class DispatcherServlet extends HttpServlet {
         //am adaugat adnotarile si nu mai verific aici path-ul
         */
 
+
+        /*Validate tip metoda: get,post,delete etc
+        * modific in dispatch (pentru ca modific cheia inainte)
+        * 8 -> suprascriu dodelete in httpservlet
+        * pt a salva angajat: cu post...*/
+
         MethodAttributes methodAttributes = allowedMethods.get(path);
         if (methodAttributes == null) return "Hello";
         else{
@@ -118,8 +133,22 @@ public class DispatcherServlet extends HttpServlet {
 
                 Class<?> controllerClass = Class.forName(controllerName);
                 Object controllerInstance = controllerClass.newInstance();
-                Method method = controllerClass.getMethod(methodAttributes.getMethodName());
-                Object result = method.invoke(controllerInstance);
+                Method method = controllerClass.getMethod(methodAttributes.getMethodName(), methodAttributes.getParameterTypes());
+                Parameter[] parameters = method.getParameters();
+                List<Object> parameterValues = new ArrayList<>();
+                for (Parameter parameter : parameters){
+                    if (parameter.isAnnotationPresent(MyRequestParam.class)){
+                        MyRequestParam annotation = parameter.getAnnotation(MyRequestParam.class);
+                        String name = annotation.name();
+                        String requestParamValue = req.getParameter(name);
+                        Class<?> type = parameter.getType();
+                        Object requestParamObj = new ObjectMapper().readValue(requestParamValue, type);
+                        parameterValues.add(requestParamObj);
+
+                    }
+                }
+                req.getParameter("id");
+                Object result = method.invoke(controllerInstance, parameterValues.toArray());
                 return result;
 
             } catch (ClassNotFoundException e) {
@@ -131,6 +160,12 @@ public class DispatcherServlet extends HttpServlet {
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (JsonParseException e) {
+                e.printStackTrace();
+            } catch (JsonMappingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
