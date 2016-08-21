@@ -1,5 +1,10 @@
 package exercise0;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by Radu.Hoaghe on 4/20/2015.
  *
@@ -14,6 +19,17 @@ public class Exercise0 {
 
     public void iterateThroughMap(){
 
+        Map<String, Integer> myMap = new HashMap<String, Integer>();
+        myMap.put("pere",12);
+        myMap.put("portocale",4);
+        myMap.put("mere",2);
+
+        Iterator<String> it= myMap.keySet().iterator();
+        while (it.hasNext())
+        {
+            String s = it.next();
+            System.out.println(s + " " + myMap.get(s));
+        }
         // TODO Exercise #0 a) Create a Map (HashMap) and add elements to it (using put() method)
         // TODO Exercise #0 a) Hint: Don't forget to specify the types of the key and value when creating the Map
 

@@ -35,12 +35,19 @@ public class Student {
     // TODO Exercise 2 a) Override the toString() method
     @Override
     public String toString() {
-        return "";
+
+        return id + " " + firstName + " " + lastName + " " + averageGrade;
     }
 
     // TODO Exercise 2 c) Override the equals() method
     @Override
     public boolean equals(Object o) {
+        if (this.toString().equals(o.toString()))
+            return true;
+        // TODO Exercise 2 c1) Check if the current instance is the same instance as the one from Object o
+
+        if (o.equals(null))
+            return false;
         // TODO Exercise 2 c1) Check if the current instance is the same instance as the one from Object o
 
         // TODO Exercise 2 c2) Check if Object o is null
